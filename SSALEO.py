@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 def objective_Fun (x):
     return 20+x[0]**2-10.*np.cos(2*3.14159*x[0])+x[1]**2-10*np.cos(2*3.14159*x[1])
 
-def SSAELO(objf, lb, ub, dim, N, Max_iteration):
+def SSALEO(objf, lb, ub, dim, N, Max_iteration):
 
     # Max_iteration=1000
     # lb=-100
@@ -37,13 +37,12 @@ def SSAELO(objf, lb, ub, dim, N, Max_iteration):
     FoodFitness = float("inf")
     # Moth_fitness=numpy.fell(float("inf"))
 
-    s = solution()
+#     s = solution()
 
-    print('SSAELO is optimizing  "' + objf.__name__ + '"')
+#     print('SSAELO is optimizing  "' + objf.__name__ + '"')
 
     timerStart = time.time()
-    s.startTime = time.strftime("%Y-%m-%d-%H-%M-%S")
-
+    
     for i in range(0, N):
         # evaluate moths
         SalpFitness[i] = objf(SalpPositions[i, :])
@@ -182,7 +181,7 @@ Dim=2 #problem dimensions
 NoRuns=100  # Number of runs
 ConvergenceCurve=np.zeros((Max_iterations,NoRuns))
 for r in range(NoRuns):
-    result = TBLSBCL(objective_Fun, LB, UB, Dim, swarm_size, Max_iterations)
+    result = SSALEO(objective_Fun, LB, UB, Dim, swarm_size, Max_iterations)
     ConvergenceCurve[:,r]=result
 # Plot the convergence curves of all runs
 idx=range(Max_iterations)
